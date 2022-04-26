@@ -7,7 +7,7 @@ import Navbar from '../navbar/navbar';
 export default function Landing({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>You can check live ipl as well as previous matches ipl scores right here in this app</Text>
       <Navbar/>
       <StatusBar style="auto" />
     </View>

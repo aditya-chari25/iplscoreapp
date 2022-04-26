@@ -1,14 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,FlatList} from 'react-native';
 import Navbar from '../navbar/navbar';
+import React, { useEffect, useState } from 'react';
+import Matchcard from '../card/matchcard';
 
 export default function Scoreresults() {
+    const [isLoading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
+    console.log(data);
+  
+    useEffect(() => {
+      fetch('https://myawesome-ipl-api.herokuapp.com/all-match-results')
+        .then((response) => response.json())
+        .then((json) => setData(json))
+        .catch((error) => console.error(error))
+        .finally(() => setLoading(false));
+    }, []);
   return (
     <View style={styles.container}>
-      <Text>Fixture Results</Text>
-      <Navbar/>
-      <StatusBar style="auto" />
-    </View>
+    <FlatList
+      data = {data.Match_Results}
+      renderItem={({item})=>
+      <Matchcard item={item}/>
+      }/>
+    <Navbar />
+    <StatusBar style="auto" />
+  </View>
   );
 }
 
