@@ -21,9 +21,11 @@ export default function Livescore() {
     <View style={styles.container}>
       <FlatList
         data = {data.Live_IPL_data}
-        renderItem={({item})=>
+        renderItem={({item,index})=>
         <Matchcard item={item}/>
-        }/>
+        }
+        keyExtractor={(item,index)=>index.toString()}
+        />
       <Navbar />
       <StatusBar style="auto" />
     </View>
